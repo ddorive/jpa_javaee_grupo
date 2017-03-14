@@ -1,0 +1,57 @@
+package br.edu.faculdadedelta.modelo;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Cidade extends BaseEntity<Long> {
+
+	private static final long serialVersionUID = 1L;
+
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id_cidade", nullable = false)
+	private Long id;
+	
+	@Column(name = "nm_cidade", nullable = false, length = 150)
+	private String nome;
+	
+	@Column(name = "uf_cidade", nullable = false, length = 3)
+	private String ufCidade;
+	
+	@Override
+	public Long getId() {
+		return null;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getUfCidade() {
+		return ufCidade;
+	}
+
+	public void setUfCidade(String ufCidade) {
+		this.ufCidade = ufCidade;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Cidade() {
+		super();
+	}
+
+	
+	
+}
