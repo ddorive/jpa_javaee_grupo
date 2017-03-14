@@ -11,7 +11,6 @@ public class Cidade extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = 1L;
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_cidade", nullable = false)
@@ -23,9 +22,12 @@ public class Cidade extends BaseEntity<Long> {
 	@Column(name = "uf_cidade", nullable = false, length = 3)
 	private String ufCidade;
 	
+	public Cidade() {
+	}
+	
 	@Override
 	public Long getId() {
-		return null;
+		return id;
 	}
 
 	public String getNome() {
@@ -47,11 +49,5 @@ public class Cidade extends BaseEntity<Long> {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public Cidade() {
-		super();
-	}
-
-	
 	
 }

@@ -22,7 +22,8 @@ public class ProdutoTest {
 	public void deveSalvarProduto(){
 		Produto produto = new Produto();
 		produto.setNome("NoteBook");
-		produto.setValorProduto(20);;
+		produto.setValorProduto(2000.00);
+		produto.setSaldoProduto(20);
 		assertTrue("Não deve ter ID definido", produto.isTransient());
 		
 		em.getTransaction().begin();
@@ -31,6 +32,7 @@ public class ProdutoTest {
 		
 		assertFalse("entidade agora tem id ainda", produto.isTransient());
 	}
+	
 	@Test
 	public void devePesquisarProdutos(){
 		for(int i=0;i<10;i++){
@@ -43,6 +45,7 @@ public class ProdutoTest {
 		assertFalse("deve ter encontrado um produto", produtos.isEmpty());
 		assertTrue("deve ter encontrado vários produtos", produtos.size()>=10);
 	}
+	
 	@Test
 	public void deveAlterarProduto(){
 		deveSalvarProduto();

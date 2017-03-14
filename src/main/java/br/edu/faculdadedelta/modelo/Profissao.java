@@ -17,14 +17,19 @@ public class Profissao extends BaseEntity<Long> {
 	
 	@Column(name = "nm_profissao", nullable = false, length = 150)
 	private String nome;
-	
+
+	public Profissao() {
+	}	
 	
 	@Override
 	public Long getId() {
-		return null;
+		return id;
 	}
 
-
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -35,14 +40,7 @@ public class Profissao extends BaseEntity<Long> {
 	}
 
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
-
-	public Profissao() {
-		super();
-	}
 
 	
 }

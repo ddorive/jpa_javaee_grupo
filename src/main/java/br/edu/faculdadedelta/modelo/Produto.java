@@ -21,18 +21,22 @@ public class Produto extends BaseEntity<Long> {
 	@Column(name = "nm_produto", nullable = false, length = 100)
 	private String nome;
 
-	@Column(name = "vl_prod", nullable = true)
+	@Column(name = "vl_produto", nullable = true)
 	private double valorProduto;
 
-	@Column(name = "qtd_prod", nullable = true)
+	@Column(name = "qtd_produto", nullable = true)
 	private int saldoProduto;
 
+	public Produto() {
+	}
+	
 	@Override
 	public Long getId() {
 		return id;
 	}
-
-	public Produto() {
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -43,9 +47,7 @@ public class Produto extends BaseEntity<Long> {
 		this.nome = nome;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
 
 	public double getValorProduto() {
 		return valorProduto;
@@ -62,7 +64,5 @@ public class Produto extends BaseEntity<Long> {
 	public void setSaldoProduto(int saldoProduto) {
 		this.saldoProduto = saldoProduto;
 	}
-
-	
 
 }
