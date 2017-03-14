@@ -41,6 +41,13 @@
 			<artifactId>h2</artifactId>
 			<version>1.4.193</version>
 		</dependency>
+		
+		<!-- Postgresql -->
+		<dependency>
+		    <groupId>org.postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		    <version>42.0.0</version>
+		</dependency>
 
 		<!-- JUnit -->
 		<dependency>
