@@ -4,10 +4,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.edu.faculdadedelta</groupId>
-	<artifactId>persistencia-jpa</artifactId>
+	<artifactId>jpa_javaee_grupo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>persistencia-jpa</name>
-	<description>persistencia-jpa</description>
+	<name>jpa_javaee_grupo</name>
+	<description>jpa_javaee_grupo</description>
 
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
