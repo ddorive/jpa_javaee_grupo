@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 
 public enum JPAUtil {
 	
-	ISNTANCE;
+	INSTANCE;
 	
 	private EntityManagerFactory factory;
 

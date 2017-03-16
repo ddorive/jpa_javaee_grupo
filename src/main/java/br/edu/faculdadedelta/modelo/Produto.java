@@ -47,8 +47,6 @@ public class Produto extends BaseEntity<Long> {
 		this.nome = nome;
 	}
 
-	
-
 	public double getValorProduto() {
 		return valorProduto;
 	}

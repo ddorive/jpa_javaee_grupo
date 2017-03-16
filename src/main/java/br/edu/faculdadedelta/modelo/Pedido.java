@@ -21,8 +21,8 @@ import javax.persistence.TemporalType;
 @Entity
 public class Pedido extends BaseEntity<Long> {
 
-	
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_pedido", unique=true, nullable=false)

@@ -86,7 +86,7 @@ public class ProdutoTest {
 
 	@AfterClass
 	public static void deveLimparBaseTeste(){
-		EntityManager entityManager = JPAUtil.ISNTANCE.getEntityManager();
+		EntityManager entityManager = JPAUtil.INSTANCE.getEntityManager();
 		entityManager.getTransaction().begin();
 		Query query = entityManager.createQuery("DELETE FROM Produto p");
 		int qtdRegistrosExclidos = query.executeUpdate();
@@ -98,7 +98,7 @@ public class ProdutoTest {
 	
 	@Before
 	public void instanciarEntityManager(){
-		em=JPAUtil.ISNTANCE.getEntityManager();
+		em=JPAUtil.INSTANCE.getEntityManager();
 	}
 	
 	@After

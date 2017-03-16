@@ -13,9 +13,6 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Endereco extends BaseEntity<Long> {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -79,8 +76,6 @@ public class Endereco extends BaseEntity<Long> {
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
-	
-	
 	
 
 }

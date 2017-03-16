@@ -13,18 +13,12 @@ public abstract class BaseEntity<T> implements Serializable {
 	
 	public abstract T getId();
 	
-	
-	
 	@Version
 	private Integer version;
 	
 	public Integer getVersion(){
 		return version;
 	}
-
-	
-	
-	
 	
 	@Override
 	public int hashCode() {

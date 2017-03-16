@@ -1,13 +1,18 @@
 package br.edu.faculdadedelta.modelo;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Profissao extends BaseEntity<Long> {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -18,8 +23,11 @@ public class Profissao extends BaseEntity<Long> {
 	@Column(name = "nm_profissao", nullable = false, length = 150)
 	private String nome;
 
+	@OneToMany(mappedBy = "profissao", fetch=FetchType.LAZY)
+	private List<Cliente> clientes;
+	
 	public Profissao() {
-	}	
+	}
 	
 	@Override
 	public Long getId() {
@@ -34,13 +42,15 @@ public class Profissao extends BaseEntity<Long> {
 		return nome;
 	}
 
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-
-
-
 	
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
 }
