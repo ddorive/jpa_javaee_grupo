@@ -1,5 +1,7 @@
 package br.edu.faculdadedelta.modelo;
 
+import static org.junit.Assert.*;
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,12 +13,10 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 import br.edu.faculdadedelta.util.JPAUtil;
 
 public class ProdutoTest {
 	private EntityManager em;
-	
 	
 	@Test
 	public void deveSalvarProduto(){
@@ -50,7 +50,7 @@ public class ProdutoTest {
 	public void deveAlterarProduto(){
 		deveSalvarProduto();
 		
-		TypedQuery<Produto> query = em.createQuery("SELECT p FROM Produto p",Produto.class).setMaxResults(1);
+		TypedQuery<Produto> query = em.createQuery(" SELECT p FROM Produto p",Produto.class).setMaxResults(1);
 		Produto prod = query.getSingleResult();
 		
 		assertNotNull("Deve ter encontrado um produto", prod);
@@ -59,13 +59,13 @@ public class ProdutoTest {
 		
 		em.getTransaction().begin();
 		
-		prod.setValorProduto(2000);;
+		prod.setValorProduto(2500.00);
 		
 		prod = em.merge(prod);
 
 		em.getTransaction().commit();
 		
-		assertNotEquals("deve ter versao incrementada", versao.intValue(), prod.getVersion().intValue());
+		assertNotEquals("deve ter versao incrementada", versao, prod.getVersion());
 	}
 	
 	@Test

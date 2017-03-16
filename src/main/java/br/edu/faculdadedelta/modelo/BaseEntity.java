@@ -16,8 +16,20 @@ public abstract class BaseEntity<T> implements Serializable {
 	@Version
 	private Integer version;
 	
+	/**
+	 * Retorna a versão
+	 * @return
+	 */
 	public Integer getVersion(){
 		return version;
+	}
+	
+	/**
+	 * Verifica se aentidade tem identificador;
+	 * @return
+	 */
+	public boolean isTransient(){
+		return getId()==null;
 	}
 	
 	@Override
@@ -26,15 +38,6 @@ public abstract class BaseEntity<T> implements Serializable {
 		int result = 1;
 		result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
 		return result;
-	}
-	
-	
-	/**
-	 * Verifica se aentidade tem identificador;
-	 * @return
-	 */
-	public boolean isTransient(){
-		return getId()==null;
 	}
 	
 
