@@ -2,6 +2,7 @@ package br.edu.faculdadedelta.modelo;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -15,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -22,6 +24,8 @@ import javax.persistence.TemporalType;
 public class Pedido extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = 1L;
+	
+	private Set<ProdutosPedidos> produtosPedidos;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -104,6 +108,17 @@ public class Pedido extends BaseEntity<Long> {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+
+	@OneToMany(mappedBy = "pedido")
+	public Set<ProdutosPedidos> getProdutosPedidos() {
+		return produtosPedidos;
+	}
+
+
+	public void setProdutosPedidos(Set<ProdutosPedidos> produtosPedidos) {
+		this.produtosPedidos = produtosPedidos;
 	}
 	
 	

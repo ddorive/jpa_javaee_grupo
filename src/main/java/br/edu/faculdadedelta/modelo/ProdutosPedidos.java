@@ -1,78 +1,55 @@
 package br.edu.faculdadedelta.modelo;
 
-import javax.persistence.CascadeType;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.junit.ClassRule;
-
 @Entity
-@Table
-public class ProdutosPedidos extends BaseEntity<Long> {
+@Table(name = "produtos_pedidos")
+public class ProdutosPedidos implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
+
+	@Id
+    @ManyToOne
+    @JoinColumn(name = "pedido_id")
+	private Pedido pedido;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_produto_pedido", nullable = false)
-	private Long id;
-   
-	@ManyToMany(fetch= FetchType.LAZY, cascade = {CascadeType.PERSIST})
-	@JoinTable(name="produtos_pedidos", 
-	 joinColumns = @JoinColumn(name="id_produto_pedido"),
-	 inverseJoinColumns=@JoinColumn(name="id_pedido"))
-	private Pedido id_pedido;
-	
-	@ManyToMany(fetch= FetchType.LAZY, cascade = {CascadeType.PERSIST})
-	@JoinTable(name="produtos_pedidos", 
-	 joinColumns = @JoinColumn(name="id_produto_pedido"),
-	 inverseJoinColumns=@JoinColumn(name="id_produto"))
-	private Produto id_produto;
+    @ManyToOne
+    @JoinColumn(name = "produto_id")
+	private Produto produto;
 	
 	@Column(name="qtde_produto")
 	private Integer qtdeProduto;
-	@Override
-	public Long getId() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	
+	public ProdutosPedidos() {	
 	}
-	
-	
-	public ProdutosPedidos() {
-		
-	}
-    
-	
 
-	public ProdutosPedidos(Long id, Pedido id_pedido, Produto id_produto,
+	public ProdutosPedidos(Pedido pedido, Produto produto,
 			Integer qtdeProduto) {
-		this.id = id;
-		this.id_pedido = id_pedido;
-		this.id_produto = id_produto;
+		this.pedido = pedido;
+		this.produto = produto;
 		this.qtdeProduto = qtdeProduto;
 	}
 
 
-	public Pedido getId_pedido() {
-		return id_pedido;
+	public Pedido getPedido() {
+		return pedido;
 	}
-	public void setId_pedido(Pedido id_pedido) {
-		this.id_pedido = id_pedido;
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
-	public Produto getId_produto() {
-		return id_produto;
+	public Produto getProduto() {
+		return produto;
 	}
-	public void setId_produto(Produto id_produto) {
-		this.id_produto = id_produto;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 	public Integer getQtdeProduto() {
 		return qtdeProduto;
@@ -80,10 +57,4 @@ public class ProdutosPedidos extends BaseEntity<Long> {
 	public void setQtdeProduto(Integer qtdeProduto) {
 		this.qtdeProduto = qtdeProduto;
 	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	
-
 }
