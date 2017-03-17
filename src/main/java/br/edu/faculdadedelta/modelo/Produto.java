@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import br.edu.faculdadedelta.util.JPAUtil.EstoqueStatusEnum;
 
 @Entity
 @Table
@@ -32,6 +35,18 @@ public class Produto extends BaseEntity<Long> {
 
 	@Column(name = "qtd_produto", nullable = true)
 	private int saldoProduto;
+	
+	@Column(length=1, nullable=false)
+	private String Status_estoque;
+	@Transient
+	public EstoqueStatusEnum getEstoqueStatusEnum(){
+		return EstoqueStatusEnum.fromValue(Status_estoque);
+		
+	}
+	public void setEstoqueStatusEnum(EstoqueStatusEnum statusEnum ){
+		this.Status_estoque = statusEnum.toValue();
+	}
+	
 
 	public Produto() {
 	}

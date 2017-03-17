@@ -44,4 +44,30 @@ public enum JPAUtil {
 	}
 	
 		}
+	
+	public enum EstoqueStatusEnum {
+		DISPONIVEL("D"), EM_FALTA("EF"), BAIXO("B"), EM_MANUTENCAO("EM");
+
+		private final String estoqueValue;
+
+		EstoqueStatusEnum(String estoqueValue) {
+			this.estoqueValue = estoqueValue;
+		}
+
+		public static EstoqueStatusEnum fromValue(String value) {
+			if (value != null) {
+				for (EstoqueStatusEnum status : values()) {
+					if (status.estoqueValue.equals(value)) {
+						return status;
+					}
+				}
+			}
+			throw new IllegalArgumentException("Opcao invalida: " + value);
+		}
+
+		public String toValue() {
+			return estoqueValue;
+	}
+	
+		}
 }

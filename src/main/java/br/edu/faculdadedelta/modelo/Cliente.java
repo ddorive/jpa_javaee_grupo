@@ -39,10 +39,9 @@ public class Cliente extends BaseEntity<Long> {
 	@Column(length=1, nullable=false)
 	private String sexoCliente;
 	@Transient
-	public SexoClienteEnum getSexoEnum() {
+	public SexoClienteEnum getSexoClienteEnum() {
 		return SexoClienteEnum.fromValue(sexoCliente);
 	}
-
 	public void setSexoEnum(SexoClienteEnum sexoEnum) {
 		this.sexoCliente = sexoEnum.toValue();
 	}
