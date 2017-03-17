@@ -15,12 +15,6 @@ public class Cidade implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-		// Alteração da estrutura da classe para que não haja a necessidade de ID, Cidade e UF;
-		// Cidade de UF passarão a ser uma chave composta, pois não há cidade com mesmo nome e mesmo estado;
-		// No lugar de ID, a chave so passa a ser verdadeira se Cidade e UF forem iguais, porem ambas terao colunas diferentes no BD;
-		// A comparação da chave passa para classe CidadePK e não da classe BasseEntity.
-		// Sera aplicado dois requerimentos do trabalho: Chave Composta (uma) e Tera um Tributo Embledded.
-		//Verifique a se esta sendo criado as tabelas e se aconsulta esta normal no BD
 	
 	@EmbeddedId
 	private CidadePK cidadePK;

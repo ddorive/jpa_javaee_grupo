@@ -3,6 +3,8 @@ package br.edu.faculdadedelta.modelo;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,12 +16,17 @@ public class ProdutosPedidos implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	
 	@Id
-    @ManyToOne
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id_pedido", unique=true, nullable=false)
+	private Long id;
+	
+	@ManyToOne
     @JoinColumn(name = "pedido_id")
 	private Pedido pedido;
 	
-	@Id
+
     @ManyToOne
     @JoinColumn(name = "produto_id")
 	private Produto produto;

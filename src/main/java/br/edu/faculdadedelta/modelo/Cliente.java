@@ -24,10 +24,6 @@ import javax.persistence.TemporalType;
 public class Cliente extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = 1L;
-	// Alteração da estrutura da classe para que não haja a necessidade de ID, Cidade e UF;
-			// ID e CPF passa a ser uma chave composta, adicionado apenas a notações:
-	//@ID em cpf e @Idclass informando a classe que cuidara da chave composta
-	//Realizado a segunda chave composta conforme o pedido no trabalho.
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
