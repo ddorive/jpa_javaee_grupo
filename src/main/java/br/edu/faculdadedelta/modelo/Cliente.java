@@ -17,6 +17,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
+import br.edu.faculdadedelta.util.JPAUtil.SexoClienteEnum;
 
 
 @Entity
@@ -32,6 +35,17 @@ public class Cliente extends BaseEntity<Long> {
 	
 	@Column(length=60, nullable=false)
 	private String nomeCliente;
+	
+	@Column(length=1, nullable=false)
+	private String sexoCliente;
+	@Transient
+	public SexoClienteEnum getSexoEnum() {
+		return SexoClienteEnum.fromValue(sexoCliente);
+	}
+
+	public void setSexoEnum(SexoClienteEnum sexoEnum) {
+		this.sexoCliente = sexoEnum.toValue();
+	}
 	
 	@Id
 	@Column(length=20)

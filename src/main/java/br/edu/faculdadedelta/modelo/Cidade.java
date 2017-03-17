@@ -1,6 +1,5 @@
 package br.edu.faculdadedelta.modelo;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EmbeddedId;
@@ -11,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name = "Cidade")
-public class Cidade implements Serializable {
+public class Cidade extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -37,6 +36,12 @@ public class Cidade implements Serializable {
 
 	public List<Endereco> getEnderecos() {
 		return enderecos;
+	}
+
+
+	@Override
+	public Long getId() {
+		return null;
 	}
 	
 	/**@Id
