@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -54,6 +55,10 @@ public class Cliente extends BaseEntity<Long> {
 	@Column(name="dt_nascimento")
 	private Date dataNascimento;
 	
+	@Embedded
+	private Cliente_Atributo cliente_Atributo;
+	
+	
 	@ManyToOne(cascade= {CascadeType.PERSIST}, fetch=FetchType.LAZY)
 	@JoinColumn(name="id_profissao", referencedColumnName="id_profissao",
 	   insertable=true, updatable=false, nullable=false)
@@ -66,14 +71,16 @@ public class Cliente extends BaseEntity<Long> {
 	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY)
 	private List<Pedido> compras;
 	
+
 	public Cliente() {
 	}
 	
-	public Cliente(Long id, Profissao profissao, String nomeCliente,
+	public Cliente(Long id, Profissao profissao, String nomeCliente, String sexoCliente,
 			String cpfCliente, Date dataNascimento) {
 		this.id = id;
 		this.profissao = profissao;
 		this.nomeCliente = nomeCliente;
+		this.sexoCliente = sexoCliente;
 		this.cpfCliente = cpfCliente;
 		this.dataNascimento = dataNascimento;
 	}
@@ -126,4 +133,11 @@ public class Cliente extends BaseEntity<Long> {
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
+	public String getSexoCliente() {
+		return sexoCliente;
+	}
+	public void setSexoCliente(String sexoCliente) {
+		this.sexoCliente = sexoCliente;
+	}
+	
 }

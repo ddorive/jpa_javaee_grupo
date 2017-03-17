@@ -56,6 +56,13 @@ public class Produto extends BaseEntity<Long> {
 		return id;
 	}
 	
+	
+	public String getStatus_estoque() {
+		return Status_estoque;
+	}
+	public void setStatus_estoque(String status_estoque) {
+		Status_estoque = status_estoque;
+	}
 	public void setId(Long id) {
 		this.id = id;
 	}
