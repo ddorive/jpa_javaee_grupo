@@ -19,7 +19,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
-
 @Entity
 @IdClass (value=ClientePK.class)
 public class Cliente extends BaseEntity<Long> {

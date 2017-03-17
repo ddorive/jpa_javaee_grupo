@@ -9,8 +9,6 @@ public class ClientePK implements Serializable{
 	private Long id;
 	private String cpfCliente;
 	
-	
-	
 	public ClientePK() {
 	}
 	
