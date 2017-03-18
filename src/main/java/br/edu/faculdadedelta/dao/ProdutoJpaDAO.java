@@ -1,36 +1,39 @@
 package br.edu.faculdadedelta.dao;
 
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import br.edu.faculdadedelta.modelo.Produto;
- 
-public class ProdutoJpaDAO {
- 
-	private EntityManager em;
-	   
-	  public ProdutoJpaDAO(EntityManager em) {
-	  this.em = em;
-	  }
-	   
-	  public void adicionarProduto(Produto produto) {
-	  em.persist(produto);
-	  }
-	   
-	  public Produto getProduto(int id) {
-	  return getTodosProdutos().get(id);
-	  }
-	   
-	  public void removerProduto(int id) {
-	  em.remove(getProduto(id));
-	  }
-	   
-	  public void atualizarProduto(Produto produto) {
-	  em.merge(produto);
-	  }
-	   
-	  public List<Produto> getTodosProdutos() {
-	  return em.createQuery("SELECT produto FROM Produto produto", Produto.class).getResultList();
-	  }
-}
+
+
+public class ProdutoJpaDAO extends DAO {
+
+        public void salvar(Produto produto){
+                //obtendo o EntityManager
+                EntityManager em = getEntityManager();
+                try{
+                        //inicia o processo de transacao
+                        em.getTransaction().begin();
+                        //faz a persistencia
+                        em.persist(produto);
+                        //manda bala para o BD
+                        em.getTransaction().commit();
+                }catch (Exception e) {
+                        //se der algo de errado vem parar aqui, onde eh cancelado
+                        em.getTransaction().rollback();
+                }
+        }
+
+        public List exibir(){
+                EntityManager em = getEntityManager();
+                try{
+                        Query q = em.createQuery("select object(c) from Produto as c");
+
+                return q.getResultList();}
+                finally{
+                        em.close();
+                }
+        }}
