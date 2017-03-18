@@ -30,7 +30,7 @@ public class ProdutoJpaDAO extends DAO {
         public List exibir(){
                 EntityManager em = getEntityManager();
                 try{
-                        Query q = em.createQuery("select object(c) from Produto as c");
+                        Query q = em.createQuery("SELECT object(c) FROM Produto as c");
 
                 return q.getResultList();}
                 finally{
