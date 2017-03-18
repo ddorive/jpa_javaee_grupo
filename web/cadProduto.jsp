@@ -24,7 +24,7 @@
 	<br/>
 	<h:outputText value="Status_estoque: "/>
 	<br/>
-	<h:inputText value="#{ProdutoController.produto.saldoProduto}" id="Status_estoque"/>
+	<h:inputText value="#{ProdutoController.produto.Status_estoque}" id="Status_estoque"/>
 	<br/>
 	</h:form>
 </f:view>
