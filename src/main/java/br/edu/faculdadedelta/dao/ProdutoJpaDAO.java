@@ -3,87 +3,34 @@ package br.edu.faculdadedelta.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import br.edu.faculdadedelta.modelo.Produto;
  
 public class ProdutoJpaDAO {
  
-         private static ProdutoJpaDAO instance;
-         protected EntityManager entityManager;
-         
-         public static ProdutoJpaDAO getInstance(){
-                   if (instance == null){
-                            instance = new ProdutoJpaDAO();
-                   }
-                   
-                   return instance;
-         }
- 
-         private ProdutoJpaDAO() {
-                   entityManager = getEntityManager();
-         }
- 
-         private EntityManager getEntityManager() {
-                   EntityManagerFactory factory = Persistence.createEntityManagerFactory("JpaJavaeePU");
-                   if (entityManager == null) {
-                            entityManager = factory.createEntityManager();
-                   }
- 
-                   return entityManager;
-         }
- 
-         public Produto getById(final int id) {
-                   return entityManager.find(Produto.class, id);
-         }
- 
-         @SuppressWarnings("unchecked")
-         public List<Produto> findAll() {
-                   return entityManager.createQuery("FROM " + Produto.class.getName()).getResultList();
-         }
- 
-         public void persist(Produto produto) {
-                   try {
-                            entityManager.getTransaction().begin();
-                            entityManager.persist(produto);
-                            entityManager.getTransaction().commit();
-                   } catch (Exception ex) {
-                            ex.printStackTrace();
-                            entityManager.getTransaction().rollback();
-                   }
-         }
- 
-         public void merge(Produto produto) {
-                   try {
-                            entityManager.getTransaction().begin();
-                            entityManager.merge(produto);
-                            entityManager.getTransaction().commit();
-                   } catch (Exception ex) {
-                            ex.printStackTrace();
-                            entityManager.getTransaction().rollback();
-                   }
-         }
- 
-         public void remove(Produto produto) {
-                   try {
-                            entityManager.getTransaction().begin();
-                            produto = entityManager.find(Produto.class, produto.getId());
-                            entityManager.remove(produto);
-                            entityManager.getTransaction().commit();
-                   } catch (Exception ex) {
-                            ex.printStackTrace();
-                            entityManager.getTransaction().rollback();
-                   }
-         }
- 
-         public void removeById(final int id) {
-                   try {
-                            Produto produto = getById(id);
-                            remove(produto);
-                   } catch (Exception ex) {
-                            ex.printStackTrace();
-                   }
-         }
-
+	private EntityManager em;
+	   
+	  public ProdutoJpaDAO(EntityManager em) {
+	  this.em = em;
+	  }
+	   
+	  public void adicionarProduto(Produto produto) {
+	  em.persist(produto);
+	  }
+	   
+	  public Produto getProduto(int id) {
+	  return getTodosProdutos().get(id);
+	  }
+	   
+	  public void removerProduto(int id) {
+	  em.remove(getProduto(id));
+	  }
+	   
+	  public void atualizarProduto(Produto produto) {
+	  em.merge(produto);
+	  }
+	   
+	  public List<Produto> getTodosProdutos() {
+	  return em.createQuery("SELECT produto FROM Produto produto", Produto.class).getResultList();
+	  }
 }
